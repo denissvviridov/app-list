@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ListController!{% endblock %}
+
+{% block body %}
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div class="content">
+
+        {% if is_granted('ROLE_USER') %}
+            <div class="list_block">
+                <h1>List</h1>
+                <div class="post_list">
+                    {% for post in posts %}
+                        <div class="post">
+                            <div>{{ post.title }} - <b>{{ post.name }}</b> <span class="delete_btn"><a
+                                            href="{{ path('app_delete',{id: post.id}) }}">Delete</a></span></div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% else %}
+
+            {% block content %}
+                <div class="not_auth">
+                    <h1><b>You are not logged in!</b></h1>
+                    <a href="{{ path('app_login') }}" class="btn btn-primary">Login</a>
+                </div>
+            {% endblock %}
+
+        {% endif %}
+    </div>
+
+{% endblock %}

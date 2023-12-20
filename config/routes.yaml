@@ -1,0 +1,33 @@
+app_home:
+    path: /
+    controller: App\Controller\HomeController::index
+
+app_list:
+    path: /list
+    controller: App\Controller\ListController::index
+
+app_delete:
+    path: /delete/{id}
+    controller: App\Controller\ListController::delete
+
+app_login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+
+app_register:
+    path: /register
+    controller: App\Controller\RegistrationController::register
+
+app_logout:
+    path: /logout
+    controller: App\Controller\SecurityController::logout
+
+error_page:
+    path: /error
+    controller: App\Controller\ErrorController::index
+
+not_found:
+    path: '{wildcard}'
+    controller: App\Controller\ErrorController::index
+    requirements:
+        wildcard: '.*'
